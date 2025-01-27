@@ -13,7 +13,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int ID;
+    private Long ID;
     @Column(name="nombre")
     private String name;
     @Column(name="apellido")
@@ -21,17 +21,17 @@ public class User {
     
     public User(){}
 
-    public User(int iD, String name, String lastname) {
+    public User(Long iD, String name, String lastname) {
         ID = iD;
         this.name = name;
         this.lastname = lastname;
     }
 
-    public int getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(int iD) {
+    public void setID(Long iD) {
         ID = iD;
     }
 
