@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import spring.jpa.springboot_jpa.DTO.UserDto;
 import spring.jpa.springboot_jpa.Entities.User;
 import spring.jpa.springboot_jpa.Repositories.IUserRepository;
 
@@ -26,7 +27,7 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// metodo de instancia....
-		getNameById();
+		algObjects();
 	}
 
 	@Transactional //todo lo q modifiq la tabla va con esta notacion
@@ -82,6 +83,41 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 		
 	}
 
+	@Transactional(readOnly = true)
+	public void algObjects(){
+		List<Object[]> c = userRepository.algObjects();
+		c.forEach(algo->{
+			String nombre = (String) algo[0];
+			Integer largo = (Integer) algo[1];
+			System.out.println("nombre "+nombre+" largo "+largo);
+		});
+	}
+
+	@Transactional(readOnly = true)
+	public void findUser(){
+		List<User> users = userRepository.findAllUser();
+		users.forEach(p->System.out.println(p));
+	}
+
+	@Transactional(readOnly = true)
+	public void findUserDto(){
+		List<UserDto> users = userRepository.findAllUserDto();
+		users.forEach(p->System.out.println(p));
+	}
+
+	@Transactional(readOnly = true)
+	public void countLastname(){
+		Long c = userRepository.findLastnameCount();
+		//Object[] c = (Object[]) userRepository.getResume();
+		//System.out.println("min "+c[0]+" max "+c[1]+" sum "+c[2]+" prom "+c[3]+" count "+c[4]);
+		System.out.println(c);
+	}
+
+	@Transactional(readOnly = true)
+	public void getResume(){
+		Object[] c = (Object[]) userRepository.getResume();
+		System.out.println("min "+c[0]+" max "+c[1]+" sum "+c[2]+" prom "+c[3]+" count "+c[4]);
+	}
 	@Transactional(readOnly = true)
 	public void getNameById(){
 		Scanner scanner = new Scanner(System.in);

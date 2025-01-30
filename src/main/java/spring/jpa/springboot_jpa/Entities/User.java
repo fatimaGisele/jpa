@@ -21,6 +21,13 @@ public class User {
     
     public User(){}
 
+    
+    public User(String name, String lastname) {
+        this.name = name;
+        this.lastname = lastname;
+    }
+
+
     public User(Long iD, String name, String lastname) {
         ID = iD;
         this.name = name;
