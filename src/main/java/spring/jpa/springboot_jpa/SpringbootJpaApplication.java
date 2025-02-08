@@ -27,7 +27,7 @@ public class SpringbootJpaApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		// metodo de instancia....
-		algObjects();
+		findUser();
 	}
 
 	@Transactional //todo lo q modifiq la tabla va con esta notacion

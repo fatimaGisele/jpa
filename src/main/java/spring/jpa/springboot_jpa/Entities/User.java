@@ -1,6 +1,7 @@
 package spring.jpa.springboot_jpa.Entities;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,8 @@ public class User {
     private String name;
     @Column(name="apellido")
     private String lastname;
+    @Embedded
+    private Audit audit = new Audit();
     
     public User(){}
 
@@ -33,6 +36,7 @@ public class User {
         this.name = name;
         this.lastname = lastname;
     }
+
 
     public Long getID() {
         return ID;
@@ -60,7 +64,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [ID=" + ID + ", name=" + name + ", lastname=" + lastname + "]";
+        return "User [ID=" + ID + ", name=" + name + ", lastname=" + lastname + ", create= " +audit.getCreate()+", update= "+audit.getUpdate() +"]";
     }
 
     
